@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EditMemeViewController.swift
 //  MemeMe
 //
 //  Created by Baraa Hesham on 1/29/19.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     struct Meme {
         var topText: String
@@ -53,6 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             // disable camera button if camera isn't available on device
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         shareButton.isEnabled = imagePickerView.image != nil
+        cancelButton.isEnabled = imagePickerView.image != nil
         
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
@@ -155,8 +157,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             print("failed to pick an Image")
         }
         present(pickerController, animated: true, completion: nil)
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
 
     }
     
@@ -171,8 +171,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
                     self.save()
             }
         }
-    
     }
+
+    @IBAction func cancelMemeEdit(_ sender: UIBarButtonItem) {
+        imagePickerView.image = nil
+        shareButton.isEnabled = false
+        cancelButton.isEnabled = false
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+    }
+    
     @IBAction func topTextFieldEndEditing(_ sender: UITextField) {
         if sender.text == ""{
             sender.text = "TOP"
