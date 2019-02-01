@@ -17,25 +17,17 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
-    
     var memedImage: UIImage = UIImage()
     
     // helper method to configure the texfields
     
-    func configureTextField(_ textField: UITextField, text: String) {
+    func configureTextField(_ textField: UITextField) {
         textField.defaultTextAttributes = [
             .strokeWidth: -3.0,
             .strokeColor: UIColor.black,
             .foregroundColor: UIColor.white,
             .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!
         ]
-        textField.text = text
         textField.delegate = self
         textField.textAlignment = .center
 
@@ -46,8 +38,8 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         // configure textfield settings
         
-        configureTextField(topTextField, text: "TOP")
-        configureTextField(bottomTextField, text: "BOTTOM")
+        configureTextField(topTextField)
+        configureTextField(bottomTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,9 +74,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     @objc func keyboardWillHide(_ notification: Notification){
-        if bottomTextField.isFirstResponder{
-            view.frame.origin.y += getKeyboardHeight(notification)
-        }
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(_ notification : Notification) -> CGFloat {
@@ -98,26 +88,16 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     func generateMemedImage() -> UIImage {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.setToolbarHidden(true, animated: false)
+        hideToolBars(false)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.setToolbarHidden(false, animated: false)
+        hideToolBars(true)
         
         return memedImage
-    }
-    
-    // clear the textfields when begin typing
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
-            textField.text = ""
-        }
     }
     
     // return keyboard key hide the keyboard
@@ -177,22 +157,15 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         imagePickerView.image = nil
         shareButton.isEnabled = false
         cancelButton.isEnabled = false
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+        topTextField.text = ""
+        bottomTextField.text = ""
     }
     
-    @IBAction func topTextFieldEndEditing(_ sender: UITextField) {
-        if sender.text == ""{
-            sender.text = "TOP"
-        }
-    }
-    @IBAction func bottomTextFieldEndEditing(_ sender: UITextField) {
-        if sender.text == ""{
-            sender.text = "BOTTOM"
-        }
-        
-        
-        
+    //helper method to hide toolbars
+    
+    func hideToolBars(_ hide:Bool){
+        self.navigationController?.setNavigationBarHidden(hide, animated: false)
+        self.navigationController?.setToolbarHidden(hide, animated: false)
     }
     
 }
