@@ -26,28 +26,28 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     var memedImage: UIImage = UIImage()
     
-    //textfield default attribut dictionairy
+    // helper method to configure the texfields
     
-    let memeTextAttributes: [NSAttributedString.Key:Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack",size: 40)!,
-        NSAttributedString.Key.strokeWidth: -3.0]
+    func configureTextField(_ textField: UITextField, text: String) {
+        textField.defaultTextAttributes = [
+            .strokeWidth: -3.0,
+            .strokeColor: UIColor.black,
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!
+        ]
+        textField.text = text
+        textField.delegate = self
+        textField.textAlignment = .center
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set some textfield settings
+        // configure textfield settings
         
-        topTextField.text = "TOP"
-        topTextField.delegate = self
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        
-        bottomTextField.text = "BOTTOM"
-        bottomTextField.delegate = self
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
+        configureTextField(topTextField, text: "TOP")
+        configureTextField(bottomTextField, text: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
