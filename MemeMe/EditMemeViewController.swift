@@ -15,7 +15,8 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     var memedImage: UIImage = UIImage()
     
@@ -33,9 +34,9 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
 
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // configure textfield settings
         
         configureTextField(topTextField)
@@ -46,8 +47,8 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
             // disable camera button if camera isn't available on device
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         shareButton.isEnabled = imagePickerView.image != nil
-        cancelButton.isEnabled = imagePickerView.image != nil
-        
+        self.tabBarController?.tabBar.isHidden = true
+
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
     }
@@ -84,18 +85,21 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     func save(){
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!,originalImage: imagePickerView.image!, memedImage:memedImage )
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!,originalImage: imagePickerView.image!, memedImage:memedImage)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
-        hideToolBars(false)
+        hideToolBars(true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        hideToolBars(true)
+        hideToolBars(false)
         
         return memedImage
     }
@@ -137,11 +141,10 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
             print("failed to pick an Image")
         }
         present(pickerController, animated: true, completion: nil)
-
     }
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
-        let memedImage: AnyObject = generateMemedImage()
+        memedImage = generateMemedImage()
         let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
         
@@ -149,23 +152,25 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
             (activity, success, items, error) in
                 if success {
                     self.save()
+                    self.navigationController?.popToRootViewController(animated: true)
+
             }
         }
     }
 
     @IBAction func cancelMemeEdit(_ sender: UIBarButtonItem) {
         imagePickerView.image = nil
-        shareButton.isEnabled = false
-        cancelButton.isEnabled = false
         topTextField.text = ""
         bottomTextField.text = ""
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
     
     //helper method to hide toolbars
     
     func hideToolBars(_ hide:Bool){
-        self.navigationController?.setNavigationBarHidden(hide, animated: false)
-        self.navigationController?.setToolbarHidden(hide, animated: false)
+            self.navigationController?.setNavigationBarHidden(hide, animated: false)
+        toolBar.isHidden = hide
     }
     
 }
