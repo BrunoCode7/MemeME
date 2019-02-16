@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="fXi-h5-XlX">
             <objects>
                 <navigationController id="7uG-2L-oMc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gpW-nX-D6A"/>
+                    <tabBarItem key="tabBarItem" title="" image="Collection" id="gpW-nX-D6A"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sPZ-dD-o91">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -49,12 +49,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="117" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F0P-FW-xoQ" userLabel="Cell Image">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F0P-FW-xoQ" userLabel="Cell Image">
                                             <rect key="frame" x="0.0" y="0.0" width="117" height="106"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="F0P-FW-xoQ" firstAttribute="height" secondItem="WtA-Hl-EM3" secondAttribute="height" id="VOg-dU-xrP"/>
+                                    <constraint firstItem="F0P-FW-xoQ" firstAttribute="centerY" secondItem="WtA-Hl-EM3" secondAttribute="centerY" id="epL-Pm-9bE"/>
+                                    <constraint firstItem="F0P-FW-xoQ" firstAttribute="centerX" secondItem="WtA-Hl-EM3" secondAttribute="centerX" id="lBj-9u-xm6"/>
+                                    <constraint firstItem="F0P-FW-xoQ" firstAttribute="width" secondItem="WtA-Hl-EM3" secondAttribute="width" id="sba-00-vm1"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="cellImage" destination="F0P-FW-xoQ" id="avI-qt-YMt"/>
                                 </connections>
@@ -83,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="-943.47826086956525" y="-684.78260869565224"/>
         </scene>
-        <!--Sent Memes-->
+        <!--Sent Memes Table View Controller-->
         <scene sceneID="Kx1-nj-ZuI">
             <objects>
                 <tableViewController id="gae-aT-JKG" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,13 +105,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZYM-8O-zet">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="5" width="414" height="34"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4W-iT-mWq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="34"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D24-mi-iNR">
-                                                    <rect key="frame" x="207" y="0.0" width="207" height="44"/>
+                                                    <rect key="frame" x="207" y="0.0" width="207" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -128,7 +133,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <constraints>
-                                    <constraint firstItem="ZYM-8O-zet" firstAttribute="height" secondItem="G8q-AL-MfY" secondAttribute="height" id="IqV-f6-Jpj"/>
+                                    <constraint firstItem="ZYM-8O-zet" firstAttribute="height" secondItem="G8q-AL-MfY" secondAttribute="height" constant="-10" id="IqV-f6-Jpj"/>
                                     <constraint firstItem="ZYM-8O-zet" firstAttribute="centerY" secondItem="G8q-AL-MfY" secondAttribute="centerY" id="J1x-Jp-fJq"/>
                                     <constraint firstItem="ZYM-8O-zet" firstAttribute="centerX" secondItem="G8q-AL-MfY" secondAttribute="centerX" id="Pp2-xw-qVZ"/>
                                     <constraint firstItem="ZYM-8O-zet" firstAttribute="width" secondItem="G8q-AL-MfY" secondAttribute="width" id="UlG-Rd-gJZ"/>
@@ -144,7 +149,7 @@
                             <outlet property="delegate" destination="gae-aT-JKG" id="E9I-YQ-rsK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sent Memes" id="4rr-jL-nSh">
+                    <navigationItem key="navigationItem" id="4rr-jL-nSh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S7S-HX-kEn">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="gCd-1b-nwG"/>
@@ -177,11 +182,11 @@
             </objects>
             <point key="canvasLocation" x="-2765" y="-380"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="rI8-l8-rAx">
             <objects>
                 <navigationController id="QTg-iS-IHb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Alp-Js-Rfh"/>
+                    <tabBarItem key="tabBarItem" title="" image="Table" id="Alp-Js-Rfh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f4Q-0Z-Lwz">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -210,14 +215,14 @@
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pYB-3Z-rHz">
-                                <rect key="frame" x="0.0" y="20" width="414" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHY-It-NgU">
-                                <rect key="frame" x="0.0" y="643" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="599" width="414" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bFY-G5-SSI"/>
-                                    <barButtonItem title="Cam" id="HTK-Oq-wah">
+                                    <barButtonItem systemItem="camera" id="HTK-Oq-wah">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="n5A-5k-pqr"/>
                                         </connections>
@@ -243,7 +248,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uzT-q7-YPx">
-                                <rect key="frame" x="0.0" y="626" width="414" height="17"/>
+                                <rect key="frame" x="0.0" y="582" width="414" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -330,7 +335,11 @@
             <point key="canvasLocation" x="1050.7246376811595" y="-274.72826086956525"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Collection" width="30" height="30"/>
+        <image name="Table" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gCd-1b-nwG"/>
+        <segue reference="skL-RA-4hs"/>
     </inferredMetricsTieBreakers>
 </document>
