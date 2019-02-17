@@ -312,17 +312,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Id-ap-Ehw">
-                                <rect key="frame" x="0.0" y="203" width="414" height="350"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="mW3-YM-RKK"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="width" secondItem="0bH-vD-NUM" secondAttribute="width" id="HRg-2k-u70"/>
-                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="centerX" secondItem="Q9U-Hp-dig" secondAttribute="centerX" id="Pqu-my-Zxd"/>
-                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="centerY" secondItem="Q9U-Hp-dig" secondAttribute="centerY" id="ylO-OT-3Cs"/>
+                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="top" secondItem="Q9U-Hp-dig" secondAttribute="top" id="a8J-Ow-Spu"/>
+                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="bottom" secondItem="Q9U-Hp-dig" secondAttribute="bottom" id="kaX-ha-ikw"/>
+                            <constraint firstItem="7Id-ap-Ehw" firstAttribute="leading" secondItem="0bH-vD-NUM" secondAttribute="leading" id="pGN-FL-SFV"/>
+                            <constraint firstAttribute="trailing" secondItem="7Id-ap-Ehw" secondAttribute="trailing" id="skL-qo-o5i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q9U-Hp-dig"/>
                     </view>

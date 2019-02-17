@@ -20,7 +20,6 @@ class SentMemesTableViewController: UITableViewController {
         super.viewDidLoad()
         memeTableView.delegate = self
         memeTableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {

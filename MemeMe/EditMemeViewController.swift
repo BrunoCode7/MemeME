@@ -159,9 +159,6 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
 
     @IBAction func cancelMemeEdit(_ sender: UIBarButtonItem) {
-        imagePickerView.image = nil
-        topTextField.text = ""
-        bottomTextField.text = ""
         self.navigationController?.popToRootViewController(animated: true)
         
     }
@@ -169,7 +166,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     //helper method to hide toolbars
     
     func hideToolBars(_ hide:Bool){
-            self.navigationController?.setNavigationBarHidden(hide, animated: false)
+        self.navigationController?.setNavigationBarHidden(hide, animated: false)
         toolBar.isHidden = hide
     }
     
